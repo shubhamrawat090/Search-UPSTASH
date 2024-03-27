@@ -1,0 +1,2 @@
+npx drizzle-kit push:pg - push a postgres schema into our remote DB
+yarn drizzle-kit studio - view our DB
