@@ -4,7 +4,7 @@ import { Loader2, Search } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { useRef, useState, useTransition } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 /* 
     GOALS: 
@@ -12,10 +12,12 @@ import { useRouter } from "next/navigation";
     2. Functional(store the search results in URL params to give results on a reload)
 */
 const SearchBar = () => {
+  const searchParams = useSearchParams();
+  const defaultQuery = searchParams.get("query") || "";
   const inputRef = useRef<HTMLInputElement>(null);
   const [isSearching, startTransition] = useTransition();
   const router = useRouter();
-  const [query, setQuery] = useState<string>("");
+  const [query, setQuery] = useState<string>(defaultQuery);
 
   const search = () => {
     startTransition(() => {
